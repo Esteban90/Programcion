@@ -1,6 +1,6 @@
 from math import acos, cos, sin
 from math import radians
-
+from turtle import pen
 
 a=0
 while a!=2:
@@ -9,20 +9,27 @@ while a!=2:
     auto="Apagado"
     velocidad=0
     if menu ==1 and a==0:
-        nombre=input("Ingrese Nombre y Apellido \n")
-        rut=input("Ingrese rut\n")
-        modelo=input("Ingrese modelo de su auto\n")
-        patente=input("Ingrese patente\n")
-        a=1
+        cantidad=int(input("¿Cuantos autos desa ingresar?\n"))
+        b=1
+        chofer=[cantidad]
+        rut=[cantidad]
+        modelo=[cantidad]
+        patente=[cantidad]  
+        while b<=cantidad:
+            chofer.append(input("Ingrese el nombre y apellido del conductor Nº"+str(b)+"\n"))
+            rut.append(input("Ingrese el rut del chofer\n"))
+            modelo.append(input("Ingrese el modelo del auto\n"))
+            patente.append(input("Ingrese la patente del auto\n"))
+            b=b+1
+            a=1
     else:
         print("Debe registrarse primero")      
     if menu == 2 and a==1:
-        print("Ingrese su destino")
-        slon=radians(int(input("Ingrese la longitud\n")))
-        slat=radians(int(input("Ingrese la latitud\n")))
-        print("Ingrese el punto de inicio")
-        elon=radians(int(input("Ingrese la longitud\n")))
-        elat=radians(int(input("Ingrese la latitud\n")))
+        c=int(input(print("Ingrese el auto que ralizara la carrera")))
+        slon=radians(int(input("Ingrese la longitud de destino\n")))
+        slat=radians(int(input("Ingrese la latitud de destino\n")))
+        elon=radians(int(input("Ingrese la longitud inicio\n")))
+        elat=radians(int(input("Ingrese la latitud inicio\n")))
         
         while i!=0:
             if menu == 2:
@@ -60,8 +67,9 @@ while a!=2:
                 import datetime
                 print(datetime.datetime.now())
             if menu2 == 7:
-                print("Nombre: ",nombre,"\nRut: ",rut,"\nModelo: ",modelo,"\nPatente: ",patente)
+                print("Nombre: ",chofer[c],"\nRut: ",rut[c],"\nModelo: ",modelo[c],"\nPatente: ",patente[c])
         dist=6371.01 * acos(sin(slat) * sin(elat) + cos(slat) * cos(elat) * cos(slon - elon))
+        d=round(dist,2)
         pago=dist*450
-        print("Distancia recorrida: ",dist,"km\nMonto a pagar: $",pago,)
-       
+        p=round(pago,2)
+        print("Distancia recorrida: ",d,"km\nMonto a pagar: $",p)
